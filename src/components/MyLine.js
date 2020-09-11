@@ -7,6 +7,7 @@ var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 const MyLine = (props) => {
+  const { personal } = props;
   const [manVisible, setManVisible] = useState(false);
   const [ageVisible, setAgeFilter] = useState(false);
   const visibleData = () => {
@@ -31,24 +32,28 @@ const MyLine = (props) => {
 
   return (
     <div style={{ textAlign: "center" }}>
-      <FormControlLabel
-        control={
-          <Switch
-            checked={manVisible}
-            onChange={() => setManVisible(!manVisible)}
+      {!personal && (
+        <>
+          <FormControlLabel
+            control={
+              <Switch
+                checked={manVisible}
+                onChange={() => setManVisible(!manVisible)}
+              />
+            }
+            label="sex filter"
           />
-        }
-        label="sex filter"
-      />
-      <FormControlLabel
-        control={
-          <Switch
-            checked={ageVisible}
-            onChange={() => setAgeFilter(!ageVisible)}
-          />
-        }
-        label="age filter"
-      />
+          <FormControlLabel
+            control={
+              <Switch
+                checked={ageVisible}
+                onChange={() => setAgeFilter(!ageVisible)}
+              />
+            }
+            label="age filter"
+          />{" "}
+        </>
+      )}
       <CanvasJSChart
         options={options}
         /* onRef={ref => this.chart = ref} */

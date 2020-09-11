@@ -6,6 +6,7 @@ import Main from "./ui/Main";
 import Theme from "./Theme";
 import Evaluation from "./ui/Evaluation";
 import Login from "./ui/Login";
+import { Report } from "./ui/Report";
 function App() {
   return (
     <>
@@ -16,6 +17,7 @@ function App() {
             <Route exact path="/" component={Main} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/evaluation/:id" component={Evaluation} />
+            <Route exact path="/report/:email" component={Report} />
           </Switch>
         </Router>
       </ThemeProvider>

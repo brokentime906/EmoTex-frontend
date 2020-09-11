@@ -21,10 +21,10 @@ const useStyles = makeStyles((theme) => ({
 //import {   } from "semantic-ui-react"
 const Movie = withRouter((props) => {
   const classes = useStyles();
-  const { imgUrl, title } = props;
+  const { imgUrl, title, comments, good, bad, view, id } = props;
   const onClick = (e) => {
     e.preventDefault();
-    props.history.push(`/evaluation/id=1795`);
+    props.history.push(`/evaluation/${id}`);
   };
   return (
     <>
@@ -40,10 +40,10 @@ const Movie = withRouter((props) => {
               {title}
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
-              Views : 542,001
+              Views : {view}
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
-              Likes 17,650 | DisLikes 1,213
+              Likes {good} | DisLikes {bad} | Comments {comments}
             </Typography>
           </CardContent>
         </CardActionArea>
