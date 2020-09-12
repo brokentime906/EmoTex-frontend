@@ -14,6 +14,7 @@ import { makeStyles } from "@material-ui/styles";
 import Movie from "../Movie";
 import { useSelector } from "react-redux";
 import Axios from "axios";
+import { connect } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   greed: {
@@ -34,14 +35,17 @@ const useStyles = makeStyles((theme) => ({
 //   },
 // ];
 const Main = (props) => {
+  const { auth, loading } = props;
   const classes = useStyles();
   const [movies, setMovies] = useState([]);
   useEffect(() => {
     const fn = async () => {
-      const user_email = "btime906@gmail.com";
+      const user_email = auth.isLoggedIn
+        ? auth.user.email
+        : "btime906@gmail.com";
       try {
         const res = await Axios.get(
-          `http://localhost:4000/evaluation/email/${user_email}`
+          `http://33775b0df2f5.ngrok.io/evaluation/email/${user_email}`
         );
         setMovies(res.data.movies);
         console.log(res.data.movies);
@@ -50,23 +54,23 @@ const Main = (props) => {
       }
     };
     fn();
-  }, []);
+  }, [auth]);
   console.log(props);
   // const movies = movieStaticData.map((eachMovie) => (
   //   <Grid item xs={12}>
   //     <Movie imgUrl={eachMovie.imgurl} title={eachMovie.title} />
   //   </Grid>
   // ));
-  const auth = useSelector((state) => state.auth);
-  console.log(auth);
-  const greet = auth.isLoggedIn ? (
-    <>
-      <Typography variant="h5">안녕하세요 {auth.user} 님</Typography>
-      <Typography variant="h6">{auth.user} 님의 시청기록</Typography>
-    </>
-  ) : (
-    <Typography variant="h5">로그인 해주세요</Typography>
-  );
+
+  const greet =
+    !loading && auth.isLoggedIn ? (
+      <>
+        <Typography variant="h5">안녕하세요 {auth.user.email} 님</Typography>
+        <Typography variant="h6">{auth.user.email} 님의 시청기록</Typography>
+      </>
+    ) : (
+      <Typography variant="h5">로그인 해주세요</Typography>
+    );
   return (
     <>
       <Grid container>
@@ -90,4 +94,7 @@ const Main = (props) => {
     </>
   );
 };
-export default Main;
+export default connect((state) => ({
+  auth: state.auth,
+  loading: state.loading["auth/LOGIN"],
+}))(Main);

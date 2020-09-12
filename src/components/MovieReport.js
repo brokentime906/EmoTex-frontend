@@ -8,7 +8,6 @@ import {
   makeStyles,
 } from "@material-ui/core";
 import { withRouter } from "react-router-dom";
-import { useSelector } from "react-redux";
 const useStyles = makeStyles((theme) => ({
   root: {
     // maxWidth: 345,
@@ -20,15 +19,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 //import {   } from "@material-ui/core"
 //import {   } from "semantic-ui-react"
-const Movie = withRouter((props) => {
+const MovieReport = withRouter((props) => {
   const classes = useStyles();
-  const auth = useSelector((state) => state.auth);
-  const { imgUrl, title, comments, good, bad, view, id } = props;
+  const { imgUrl, title, comments, good, bad, view, id, email } = props;
   const onClick = (e) => {
-    const email = auth.isLoggedIn ? auth.user.email : "btime906@gmail.com";
     e.preventDefault();
     props.history.push(`/report/${email}/${id}`);
-    console.log(auth.user);
   };
   return (
     <>
@@ -63,4 +59,4 @@ const Movie = withRouter((props) => {
     </>
   );
 });
-export default Movie;
+export default MovieReport;

@@ -7,6 +7,7 @@ import Theme from "./Theme";
 import Evaluation from "./ui/Evaluation";
 import Login from "./ui/Login";
 import { Report } from "./ui/Report";
+import PersonalReport from "./ui/PersonalReport";
 function App() {
   return (
     <>
@@ -18,6 +19,7 @@ function App() {
             <Route exact path="/login" component={Login} />
             <Route exact path="/evaluation/:id" component={Evaluation} />
             <Route exact path="/report/:email" component={Report} />
+            <Route exact path="/report/:email/:id" component={PersonalReport} />
           </Switch>
         </Router>
       </ThemeProvider>

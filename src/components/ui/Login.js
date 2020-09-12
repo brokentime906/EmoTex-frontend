@@ -91,7 +91,7 @@ const SignIn = withRouter((props) => {
             onClick={(e) => {
               e.preventDefault();
               dispatch(login(email));
-              props.history.push("/");
+              props.history.push(`/report/${email}`);
             }}
           >
             Sign In

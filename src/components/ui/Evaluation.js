@@ -13,7 +13,7 @@ const Evaluation = (props) => {
   useEffect(() => {
     const fn = async () => {
       console.log(id);
-      const res = await Axios.get(`http://localhost:4000/movie/${id}`);
+      const res = await Axios.get(`http://33775b0df2f5.ngrok.io/movie/${id}`);
       console.log(res);
       setMovie(res.data.movie);
     };

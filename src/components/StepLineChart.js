@@ -4,6 +4,17 @@ var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 class StepLineChart extends Component {
   render() {
+    console.log("stepline data", this.props.data);
+    const dataPoints =
+      this.props.data &&
+      this.props.data[0].map(
+        ({ Sad, Anger, Disgust, Fear, Happiness, Surprise, neutral }, idx) => {
+          const arr = [Anger, Sad, Disgust, Fear, Happiness, Surprise, neutral];
+          let i = arr.indexOf(Math.max(...arr));
+          return { x: idx + 1, y: i };
+        }
+      );
+
     const options = {
       theme: "light2",
       animationEnabled: true,
@@ -18,27 +29,15 @@ class StepLineChart extends Component {
       data: [
         {
           type: "stepLine",
-          xValueFormatString: "timestamp 00:0#",
+          xValueFormatString: "timestamp 00:##",
           markerSize: 5,
-          dataPoints: [
-            { x: 0, y: 0 },
-            { x: 1, y: 2 },
-            { x: 2, y: 2 },
-            { x: 3, y: 4 },
-            { x: 4, y: 3 },
-            { x: 5, y: 4 },
-            { x: 6, y: 4 },
-            { x: 7, y: 2 },
-            { x: 8, y: 2 },
-            { x: 9, y: 6 },
-          ],
+          dataPoints: dataPoints,
         },
       ],
     };
 
     return (
       <div>
-        <h1>Movie id= 1795 분석</h1>
         <CanvasJSChart
           options={options}
           /* onRef={ref => this.chart = ref} */
