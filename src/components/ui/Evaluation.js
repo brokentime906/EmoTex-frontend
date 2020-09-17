@@ -5,6 +5,7 @@ import Movie from "../Movie";
 import StepLineChart from "../StepLineChart";
 import MyLine from "../MyLine";
 import Axios from "axios";
+import { BASE_URL } from "../../constant";
 
 const Evaluation = (props) => {
   console.log(props);
@@ -13,7 +14,7 @@ const Evaluation = (props) => {
   useEffect(() => {
     const fn = async () => {
       console.log(id);
-      const res = await Axios.get(`http://33775b0df2f5.ngrok.io/movie/${id}`);
+      const res = await Axios.get(`${BASE_URL}/movie/${id}`);
       console.log(res);
       setMovie(res.data.movie);
     };

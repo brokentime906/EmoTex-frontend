@@ -1,5 +1,6 @@
 import Axios from "axios";
 import { finishLoading, startLoading } from "./loading";
+import { BASE_URL } from "../constant";
 const LOGIN = "auth/LOGIN";
 const LOGOUT = "auth/LOGOUT";
 const GETUSER = "auth/GETUSER";
@@ -7,7 +8,7 @@ const GETUSER = "auth/GETUSER";
 export const login = (email) => async (dispatch) => {
   dispatch(startLoading(LOGIN));
   try {
-    const res = await Axios.post(`http://33775b0df2f5.ngrok.io/user/signin`, {
+    const res = await Axios.post(`${BASE_URL}/user/signin`, {
       email,
     });
     if (res.data.success) {

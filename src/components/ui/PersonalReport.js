@@ -7,6 +7,7 @@ import MyLine from "../MyLine";
 import Axios from "axios";
 import MovieReport from "../MovieReport";
 import MyPersonalLine from "../MyPersonalLine";
+import { BASE_URL } from "../../constant";
 
 const PersonalReport = (props) => {
   console.log(props);
@@ -17,11 +18,9 @@ const PersonalReport = (props) => {
   useEffect(() => {
     const fn = async () => {
       console.log(id);
-      let res = await Axios.get(`http://33775b0df2f5.ngrok.io/movie/${id}`);
+      let res = await Axios.get(`${BASE_URL}/movie/${id}`);
       setMovie(res.data.movie);
-      res = await Axios.get(
-        `http://33775b0df2f5.ngrok.io/evaluation/email/${email}`
-      );
+      res = await Axios.get(`${BASE_URL}/evaluation/email/${email}`);
       console.log(res.data.evaluationList);
       setEvaluations(res.data.evaluationList);
     };

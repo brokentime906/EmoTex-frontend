@@ -5,14 +5,14 @@ import StepLineChart from "../StepLineChart";
 import MyLine from "../MyLine";
 import Movie from "../Movie";
 import MovieReport from "../MovieReport";
+import { BASE_URL } from "../../constant";
 export const Report = (props) => {
   const { email } = props.match.params;
   const [evaluations, setEvaluations] = useState([]);
   useEffect(() => {
+    // frontURL/report/nano.rlsh@gmail.com
     const fn = async () => {
-      const res = await axios.get(
-        `http://33775b0df2f5.ngrok.io/evaluation/email/${email}`
-      );
+      const res = await axios.get(`${BASE_URL}/evaluation/email/${email}`);
       console.log(res.data);
       setEvaluations(res.data.movies);
     };

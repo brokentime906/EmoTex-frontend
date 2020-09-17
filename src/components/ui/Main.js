@@ -15,6 +15,7 @@ import Movie from "../Movie";
 import { useSelector } from "react-redux";
 import Axios from "axios";
 import { connect } from "react-redux";
+import { BASE_URL } from "../../constant";
 
 const useStyles = makeStyles((theme) => ({
   greed: {
@@ -45,7 +46,7 @@ const Main = (props) => {
         : "btime906@gmail.com";
       try {
         const res = await Axios.get(
-          `http://33775b0df2f5.ngrok.io/evaluation/email/${user_email}`
+          `${BASE_URL}/evaluation/email/${user_email}`
         );
         setMovies(res.data.movies);
         console.log(res.data.movies);

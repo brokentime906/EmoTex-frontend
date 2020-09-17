@@ -5,6 +5,7 @@ import Header from "./ui/Header";
 import Main from "./ui/Main";
 import Theme from "./Theme";
 import Evaluation from "./ui/Evaluation";
+import StaticMyPersonalLine from "./StaticMyPersonalLine";
 import Login from "./ui/Login";
 import { Report } from "./ui/Report";
 import PersonalReport from "./ui/PersonalReport";
@@ -17,6 +18,11 @@ function App() {
           <Switch>
             <Route exact path="/" component={Main} />
             <Route exact path="/login" component={Login} />
+            <Route
+              exact
+              path="/staticreport"
+              component={StaticMyPersonalLine}
+            />
             <Route exact path="/evaluation/:id" component={Evaluation} />
             <Route exact path="/report/:email" component={Report} />
             <Route exact path="/report/:email/:id" component={PersonalReport} />

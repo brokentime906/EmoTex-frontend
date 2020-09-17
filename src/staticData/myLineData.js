@@ -1,6 +1,6 @@
 exports.data1 = {
   type: "spline",
-  name: "woman 20s ages",
+  name: "Arousal",
   showInLegend: true,
   dataPoints: [
     { y: Math.random(), label: " 00:01" },
@@ -19,7 +19,7 @@ exports.data1 = {
 };
 exports.data2 = {
   type: "spline",
-  name: "woman 30s ages",
+  name: "Valence",
   showInLegend: true,
   dataPoints: [
     { y: Math.random(), label: " 00:01" },
