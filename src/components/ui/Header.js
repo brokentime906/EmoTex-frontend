@@ -10,6 +10,8 @@ import {
 } from "@material-ui/core";
 import HomeIcon from "@material-ui/icons/Home";
 import { withRouter } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "../../modules/auth";
 const useSytles = makeStyles((theme) => ({
   TeamNameContainer: {
     flex: 1,
@@ -27,7 +29,8 @@ const useSytles = makeStyles((theme) => ({
 }));
 const Header = withRouter((props) => {
   const classes = useSytles();
-
+  const auth = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
   return (
     <>
       <AppBar>
@@ -46,17 +49,33 @@ const Header = withRouter((props) => {
           >
             Home
           </Button>
-          <Button
-            variant="contained"
-            color="secondary"
-            className={classes.button}
-            onClick={(e) => {
-              e.preventDefault();
-              props.history.push("/login");
-            }}
-          >
-            Sign In
-          </Button>
+          {auth && !auth.isLoggedIn && (
+            <Button
+              variant="contained"
+              color="secondary"
+              className={classes.button}
+              onClick={(e) => {
+                e.preventDefault();
+                props.history.push("/login");
+              }}
+            >
+              Sign In
+            </Button>
+          )}
+          {auth && auth.isLoggedIn && (
+            <Button
+              variant="contained"
+              color="secondary"
+              className={classes.button}
+              onClick={(e) => {
+                e.preventDefault();
+                dispatch(logout());
+                props.history.push("/");
+              }}
+            >
+              Sign Out
+            </Button>
+          )}
         </Toolbar>
       </AppBar>
       <div className={classes.toolbarMargin} />

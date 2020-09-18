@@ -41,9 +41,9 @@ const Main = (props) => {
   const [movies, setMovies] = useState([]);
   useEffect(() => {
     const fn = async () => {
-      const user_email = auth.isLoggedIn
-        ? auth.user.email
-        : "btime906@gmail.com";
+      if (!auth.isLoggedIn) return;
+      const user_email = auth.user.email;
+
       try {
         const res = await Axios.get(
           `${BASE_URL}/evaluation/email/${user_email}`

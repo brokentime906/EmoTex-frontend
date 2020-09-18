@@ -21,7 +21,6 @@ export const Report = (props) => {
   return (
     <div>
       <Grid container>
-        {email}'s Report
         {evaluations && evaluations.length === 0 ? (
           <Paper>
             <Typography>시청기록이 존재하지 않습니다</Typography>
@@ -32,19 +31,16 @@ export const Report = (props) => {
         {evaluations &&
           evaluations.map((movie) => (
             <Grid item xs={12}>
-              <Paper>
-                <Typography>movie url : {movie.movie_url}</Typography>
-                <MovieReport
-                  imgUrl={movie.thumbnail}
-                  title={movie.title}
-                  comments={movie.comments}
-                  good={movie.good}
-                  bad={movie.bad}
-                  view={movie.view}
-                  id={movie._id}
-                  email={email}
-                />
-              </Paper>
+              <MovieReport
+                imgUrl={movie.thumbnail}
+                title={movie.title}
+                comments={movie.comments}
+                good={movie.good}
+                bad={movie.bad}
+                view={movie.view}
+                id={movie._id}
+                email={email}
+              />
             </Grid>
           ))}
       </Grid>
