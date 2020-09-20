@@ -9,6 +9,7 @@ import StaticMyPersonalLine from "./StaticMyPersonalLine";
 import Login from "./ui/Login";
 import { Report } from "./ui/Report";
 import PersonalReport from "./ui/PersonalReport";
+import ProviderReport from "./ui/ProviderReport";
 function App() {
   return (
     <>
@@ -26,6 +27,7 @@ function App() {
             <Route exact path="/evaluation/:id" component={Evaluation} />
             <Route exact path="/report/:email" component={Report} />
             <Route exact path="/report/:email/:id" component={PersonalReport} />
+            <Route path="/provider/report" component={ProviderReport} />
           </Switch>
         </Router>
       </ThemeProvider>
